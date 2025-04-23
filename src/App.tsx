@@ -53,7 +53,6 @@ function App() {
             <div className="type-display">
               {/* Display the type information here */}
               <p>
-                Type: <span>-</span>
                 Type: <span>{selectedType || '-'}</span>
               </p>
             </div>
