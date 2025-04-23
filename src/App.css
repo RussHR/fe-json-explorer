@@ -71,7 +71,7 @@ code {
 }
 
 .property-name {
-  color: #881391;
+  color: #E995EE;
   margin-right: 5px;
 }
 
@@ -88,27 +88,27 @@ code {
 }
 
 .value-string {
-  color: #1a1aa6;
+  color: #B3B3F5;
 }
 
 .value-number {
-  color: #1c00cf;
+  color: #00CCCC;
 }
 
 .value-boolean {
-  color: #1c00cf;
+  color: #04D600;
 }
 
 .value-null {
-  color: #1c00cf;
+  color: #FF9694;
 }
 
 .value-object {
-  color: #000000;
+  color: #FA9A00;
 }
 
 .value-array {
-  color: #000000;
+  color: #B8C200;
 }
 
 /* Selected node styling */
