@@ -1,8 +1,21 @@
+import { useState } from 'react';
+import { JsonValue } from './types';
+
 import './App.css';
 import JsonExplorer from './components/JsonExplorer';
 import { sampleData } from './assets/data/sampleData';
 
 function App() {
+  const [selectedPath, setSelectedPath] = useState<string | null>(null);
+  const [selectedValue, setSelectedValue] = useState<JsonValue | null>(null);
+  const [selectedType, setSelectedType] = useState<string | null>(null);
+
+  const handleNodeClick = (path: string, value: JsonValue, type: string) => {
+    setSelectedPath(path);
+    setSelectedValue(value);
+    setSelectedType(type);
+  };
+
   return (
     <>
       <div className="app">
@@ -13,7 +26,13 @@ function App() {
 
         <main>
           <div className="explorer-container">
-            <JsonExplorer data={sampleData} />
+            <JsonExplorer
+              data={sampleData}
+              handleNodeClick={handleNodeClick}
+              selectedPath={selectedPath}
+              selectedType={selectedType}
+              selectedValue={selectedValue}
+            />
             {/*
             TODO: Implement your JSON Explorer component here
             Requirements:
@@ -28,13 +47,14 @@ function App() {
             <div className="path-display">
               {/* Display the selected path here */}
               <p>
-                Path: <code>No node selected</code>
+                Path: <code>{selectedPath || 'No node selected'}</code>
               </p>
             </div>
             <div className="type-display">
               {/* Display the type information here */}
               <p>
                 Type: <span>-</span>
+                Type: <span>{selectedType || '-'}</span>
               </p>
             </div>
             <div className="value-display">

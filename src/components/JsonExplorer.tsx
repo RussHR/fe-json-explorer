@@ -1,22 +1,21 @@
-import { useState } from 'react';
 import { JsonValue } from '../types';
 import JsonTreeNode from './JsonTreeNode';
 
 interface JsonExplorerProps {
   data: JsonValue;
+  selectedPath: string | null;
+  selectedValue: JsonValue | null;
+  selectedType: string | null;
+  handleNodeClick: (path: string, value: JsonValue, type: string) => void;
 }
 
-const JsonExplorer: React.FC<JsonExplorerProps> = ({ data }) => {
-  const [selectedPath, setSelectedPath] = useState<string | null>(null);
-  const [selectedValue, setSelectedValue] = useState<JsonValue | null>(null);
-  const [selectedType, setSelectedType] = useState<string | null>(null);
-
-  const handleNodeClick = (path: string, value: JsonValue, type: string) => {
-    setSelectedPath(path);
-    setSelectedValue(value);
-    setSelectedType(type);
-  };
-
+const JsonExplorer: React.FC<JsonExplorerProps> = ({
+  data,
+  selectedPath,
+  selectedValue,
+  selectedType,
+  handleNodeClick
+}) => {
   // Helper to safely display values as strings
   const displayValue = (value: JsonValue | null): string => {
     if (value === null) return 'null';

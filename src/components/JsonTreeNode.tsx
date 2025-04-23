@@ -37,6 +37,8 @@ const JsonTreeNode: React.FC<JsonTreeNodeProps> = ({
   const handleNodeClick = (e: React.MouseEvent) => {
     e.stopPropagation();
     onNodeClick(path, data, type);
+
+    toggleExpand();
   };
 
   const generateNodeHeaderValue = () => {
@@ -61,7 +63,7 @@ const JsonTreeNode: React.FC<JsonTreeNodeProps> = ({
   return (
     <div className="json-node">
       {/* Implement your node rendering logic here */}
-      <div className="node-header" onClick={toggleExpand}>
+      <div className="node-header" onClick={handleNodeClick}>
         {isExpandable && (
           <span className="expand-icon">
             {isExpanded ? '▽' : '▶'}
