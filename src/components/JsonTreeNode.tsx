@@ -24,10 +24,11 @@ const JsonTreeNode: React.FC<JsonTreeNodeProps> = ({
   };
 
   const type = getType(data);
+  const isExpandable = type === 'object' || type === 'array';
 
   // Toggle expand/collapse for objects and arrays
   const toggleExpand = () => {
-    if (type === 'object' || type === 'array') {
+    if (isExpandable) {
       setIsExpanded(!isExpanded);
     }
   };
@@ -45,12 +46,34 @@ const JsonTreeNode: React.FC<JsonTreeNodeProps> = ({
     <div className="json-node">
       {/* Implement your node rendering logic here */}
       <div className="node-header" onClick={toggleExpand}>
-        {/* Implement expand/collapse icons and node labeling */}
+        {name}: {!isExpandable && String(data)}
       </div>
 
       {/* Render children when expanded */}
-      {isExpanded && (
-        <div className="node-children">{/* Render child nodes here */}</div>
+      {/* TODO: add isExpanded back */}
+      {isExpandable && (
+        <div className="node-children">
+          {
+            type === 'array' ?
+              (data as JsonValue[]).map((jsonValue, index) => (
+                <JsonTreeNode
+                  key={index}
+                  name={`[${index}]`}
+                  data={jsonValue}
+                  path={`${path}[${index}]`}
+                  onNodeClick={onNodeClick}
+                />)) :
+              Object.entries(data as Record<string, JsonValue>).map(([key, jsonValue]) => (
+                <JsonTreeNode
+                  key={key}
+                  name={key}
+                  data={jsonValue}
+                  path={`${path}.${key}`}
+                  onNodeClick={onNodeClick}
+                />
+              ))
+          }
+        </div>
       )}
     </div>
   );
