@@ -68,7 +68,8 @@ const JsonTreeNode: React.FC<JsonTreeNodeProps> = ({
           <span className="expand-icon">
             {isExpanded ? '▽' : '▶'}
           </span>)}
-        {name}: {generateNodeHeaderValue()}
+        <span className="property-name">{name}: </span>
+        <span className={`value-${type}`}>{generateNodeHeaderValue()}</span>
       </div>
 
       {/* Render children when expanded */}

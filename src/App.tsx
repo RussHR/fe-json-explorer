@@ -54,7 +54,7 @@ function App() {
             <div className="type-display">
               {/* Display the type information here */}
               <p>
-                Type: <span>{selectedType || '-'}</span>
+                Type: <span className={`value-${selectedType}`}>{selectedType || '-'}</span>
               </p>
             </div>
             <pre className="value-display">

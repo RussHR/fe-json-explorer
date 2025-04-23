@@ -38,7 +38,7 @@ const JsonExplorer: React.FC<JsonExplorerProps> = ({
             </div>
             <div className="type-display">
               <p>
-                Type: <span>{selectedType}</span>
+                Type: <span className={`value-${selectedType}`}>{selectedType}</span>
               </p>
             </div>
             {selectedValue !== undefined &&
