@@ -39,6 +39,22 @@ const JsonTreeNode: React.FC<JsonTreeNodeProps> = ({
     onNodeClick(path, data, type);
   };
 
+  const generateNodeHeaderValue = () => {
+    switch (type) {
+      case 'object':
+        return '{ ... }';
+      case 'array':
+        return '[ ... ]';
+      case 'string':
+        return `'${data}'`;
+      case 'null':
+      case 'boolean':
+      case 'number':
+      default:
+        return String(data);
+    }
+  }
+
   // TODO: Implement rendering for different data types
   // TODO: Add logic to render child nodes when expanded
 
@@ -46,7 +62,7 @@ const JsonTreeNode: React.FC<JsonTreeNodeProps> = ({
     <div className="json-node">
       {/* Implement your node rendering logic here */}
       <div className="node-header" onClick={toggleExpand}>
-        {name}: {!isExpandable && String(data)}
+        {name}: {generateNodeHeaderValue()}
       </div>
 
       {/* Render children when expanded */}
