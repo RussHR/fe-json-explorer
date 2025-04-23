@@ -4,6 +4,7 @@ import { JsonValue } from './types';
 import './App.css';
 import JsonExplorer from './components/JsonExplorer';
 import { sampleData } from './assets/data/sampleData';
+import { displayValue } from './helpers';
 
 function App() {
   const [selectedPath, setSelectedPath] = useState<string | null>(null);
@@ -56,9 +57,10 @@ function App() {
                 Type: <span>{selectedType || '-'}</span>
               </p>
             </div>
-            <div className="value-display">
+            <pre className="value-display">
               {/* Display the value here if applicable */}
-            </div>
+              {displayValue(selectedValue)}
+            </pre>
           </div>
         </main>
       </div>

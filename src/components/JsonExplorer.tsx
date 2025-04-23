@@ -1,5 +1,6 @@
 import { JsonValue } from '../types';
 import JsonTreeNode from './JsonTreeNode';
+import { displayValue } from '../helpers';
 
 interface JsonExplorerProps {
   data: JsonValue;
@@ -16,15 +17,6 @@ const JsonExplorer: React.FC<JsonExplorerProps> = ({
   selectedType,
   handleNodeClick
 }) => {
-  // Helper to safely display values as strings
-  const displayValue = (value: JsonValue | null): string => {
-    if (value === null) return 'null';
-    if (typeof value === 'object') {
-      return JSON.stringify(value, null, 2);
-    }
-    return String(value);
-  };
-
   return (
     <div className="json-explorer">
       <div className="tree-container">
